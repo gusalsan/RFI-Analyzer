@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+   <html>
+   <head>
+     <title>Resultados RFI</title>
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+   </head>
+   <body>
+     <h1>Resultados del Análisis Fonológico</h1>
+     <a href="{{ url_for('index') }}" class="button">Volver al Formulario</a>
+     <div class="resumen">
+       <h2>Resumen</h2>
+       <p><strong>Espontánea:</strong> {{ resumen.aciertos_esp }} / {{ resumen.total_esp }} correctas ({{ resumen.pct_esp }}%)</p>
+       <p><strong>Repetición:</strong> {{ resumen.aciertos_rep }} / {{ resumen.total_rep }} correctas ({{ resumen.pct_rep }}%)</p>
+     </div>
+     <table>
+       <thead>
+         <tr>
+           <th>Palabra</th>
+           <th>Espontánea</th>
+           <th>Repetición</th>
+         </tr>
+       </thead>
+       <tbody>
+         {% for palabra in palabras %}
+         <tr>
+           <td>{{ palabra }}</td>
+           <td>
+             {% if palabra in resultados.espontanea %}
+               <strong>Producción:</strong> {{ resultados.espontanea[palabra].produccion }}<br>
+               <strong>Errores:</strong> {{ resultados.espontanea[palabra].errores|join(', ') }}
+             {% else %}
+               No ingresado
+             {% endif %}
+           </td>
+           <td>
+             {% if palabra in resultados.repeticion %}
+               <strong>Producción:</strong> {{ resultados.repeticion[palabra].produccion }}<br>
+               <strong>Errores:</strong> {{ resultados.repeticion[palabra].errores|join(', ') }}
+             {% else %}
+               No ingresado
+             {% endif %}
+           </td>
+         </tr>
+         {% endfor %}
+       </tbody>
+     </table>
+     <a href="{{ url_for('descargar_pdf') }}" class="button">Descargar PDF</a>
+   </body>
+   </html>

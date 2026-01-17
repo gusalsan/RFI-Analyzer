@@ -1,0 +1,6 @@
+flask
+reportlab
+reportlab
+reportlab
+bcrypt
+bcrypt

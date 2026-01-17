@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+   <html>
+   <head>
+     <title>RFI Analyzer</title>
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+   </head>
+   <body>
+     <h1>Registro Fonológico Inducido</h1>
+     <form method="POST" action="/analizar">
+       <table>
+         <thead>
+           <tr>
+             <th>Imagen</th>
+             <th>Producción espontánea</th>
+             <th>Repetición</th>
+           </tr>
+         </thead>
+         <tbody>
+           {% for palabra in palabras %}
+           <tr>
+             <td>
+               <img src="{{ url_for('static', filename='images/' + palabra + '.png') }}"
+                    alt="{{ palabra }}"
+                    width="200" height="200"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+               <span style="display:none;">{{ palabra }}</span>
+             </td>
+             <td>
+               <label>{{ palabra }}:</label>
+               <input type="text" name="espontanea_{{ palabra }}" placeholder="Producción espontánea">
+             </td>
+             <td>
+               <label>{{ palabra }}:</label>
+               <input type="text" name="repeticion_{{ palabra }}" placeholder="Producción repetición">
+             </td>
+           </tr>
+           {% endfor %}
+         </tbody>
+       </table>
+       <button type="submit">Analizar</button>
+     </form>
+   </body>
+   </html>
