@@ -1,6 +1,5 @@
 # RFI Analyzer - Herramienta de Evaluación Fonológica
 
-#### Vídeo de demostración: [Insertar URL de YouTube aquí]
 
 #### Descripción
 
